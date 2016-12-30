@@ -17,6 +17,11 @@ function inspectArgs(args) {
   }, '(') + ')';
 }
 
+function toArray() {
+    var args = Array.prototype.slice.call(arguments);
+    return args.sort();
+}
+
 function curry(fx) {
   var arity = fx.length;
 
@@ -28,7 +33,7 @@ function curry(fx) {
     else {
       var f2 = function f2() {
         var args2 = Array.prototype.slice.call(arguments, 0);
-        return f1.apply(null, args.concat(args2)); 
+        return f1.apply(null, args.concat(args2));
       }
       f2.toString = function() {
         return inspectFn(fx) + inspectArgs(args);
